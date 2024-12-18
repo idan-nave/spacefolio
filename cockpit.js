@@ -1,6 +1,6 @@
 /* cockpit.js */
 
-import { controlHome, shopOnline, shieldToggle, taskScheduler, timeHalt, timeTravel, destroyEarth, destroySelf, contactSupport, pilotCreds, networkBringup, srcCode } from './interact.js';
+import { controlHome, shopOnline, shieldToggle, taskScheduler, timeHalt, timeTravel, destroyEarth, destroySelf, contactSupport, pilotCreds, networkBringup, srcCode, cleanCube} from './interact.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     const cockpitImage = document.getElementById("cockpit-image");
@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: "source_code", x: 114, y: 245, type: "square", color: "rgba(255, 255, 255, 0.5)", rotation: 10, skew: "-20deg", tooltip: "Space-Time Source Code" },
         // 1 right circle
         { id: "network_bringup", x: 420, y: 326, type: "circle", color: "rgba(128, 0, 128, 0.5)", rotation: 0, skew: "0deg", tooltip: "Network Bringup" },
+        // 1 cleancube
+        { id: "cleancube", x: 420, y: 260, type: "square", color: "rgba(255, 255, 255, 0)", rotation: 10, skew: "-0deg", tooltip: "Learn CleanCube" },
     ];
 
     const originalWidth = 626;
@@ -79,6 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
             button.style.transform += `rotate(${coord.rotation}deg) skew(${coord.skew})`;
             button.setAttribute("data-tooltip", coord.tooltip);  // Set the tooltip data
 
+            if (coord.id === "cleancube") {
+                // Create an image element for the GIF
+                const gifImage = document.createElement("img");
+                gifImage.src = "./media/images/animation.gif";
+                  // Set the image to cover the button completely
+                gifImage.style.width = "300%"; // Make the image width 100% of the button's width
+                gifImage.style.height = "300%"; // Make the image height 100% of the button's height
+
+                button.appendChild(gifImage);
+            }
+
             // Add hover effect to update the message in the monitor
             button.addEventListener("mouseenter", () => {
                 messageOverlay.innerText = coord.tooltip; // Update the monitor message on hover
@@ -94,9 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const assignFunctionality = () => {
         buttonCoordinates.forEach(({ id }) => {
             const button = document.getElementById(id);
-    
+
             if (!button) return; // Skip if the button is not found
-    
+
             // Assign functionality based on the button's ID
             switch (id) {
                 case "control_home":
@@ -135,11 +148,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 case "source_code":
                     button.addEventListener("click", srcCode);
                     break;
+                case "cleancube":
+                    button.addEventListener("click", cleanCube);
+                    break;
                 // Add more cases for additional buttons...
             }
         });
     };
-    
+
     // Adjust positions on load and resize
     adjustButtonPositions();
     assignFunctionality();

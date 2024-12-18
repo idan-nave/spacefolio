@@ -7,15 +7,11 @@ export const updateDynamicContent = (overlayContent) => {
    contentOverlay.innerHTML = overlayContent || '';
 };
 
-// Define the functionalities for each button
-export const controlHome = () => {
-   //
-};
 
 export const shopOnline = () => {
    updateDynamicContent({
-            overlayContent: `<iframe src="https://google.com" style="width: 100%; height: 80vh; border: none;"></iframe>`
-         });
+      overlayContent: `<iframe src="https://google.com" style="width: 100%; height: 80vh; border: none;"></iframe>`
+   });
 };
 
 export const shieldToggle = () => {
@@ -38,11 +34,6 @@ export const shieldToggle = () => {
    }
 };
 
-
-export const taskScheduler = () => {
-   //
-};
-
 export const timeHalt = () => {
    // Select the Earth video element using its class
    const earthVideo = document.querySelector(".background-video");
@@ -62,7 +53,11 @@ export const timeHalt = () => {
 
 
 export const timeTravel = () => {
-   //
+   const video = document.querySelector(".background-video");
+   video.src = "media/videos/time_travel.mp4";
+   video.loop = false;
+   video.autoplay = true;
+   video.muted = true;
 };
 
 export const destroyEarth = () => {
@@ -85,18 +80,44 @@ export const destroySelf = () => {
 
 
 export const contactSupport = () => {
-   //
+   var recipient = "idan.nave.dev@gmail.com";
+   var subject = "Job Offering";
+   var body = "Hello, we would like to oaffer you a job.";
+
+   var mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+   window.location.href = mailtoLink;
 };
 
 export const pilotCreds = () => {
-   //
+   shieldToggle();
+   window.location.href = "https://drive.google.com/file/d/1RU-2zM8wbsyJ9qd81zWQ_AMPrFd8rbZX/view?usp=sharing";
 };
 
 export const networkBringup = () => {
-   //
+   shieldToggle();
+   window.location.href = "https://drive.google.com/file/d/1_v-pANegsFrV7GaYaK3yHFfu4epG7zTm/view?usp=sharing";
 };
 export const srcCode = () => {
-   //
+   shieldToggle();
+   window.location.href = "https://github.com/idan-nave/";
+};
+
+export const cleanCube = () => {
+   shieldToggle();
+   window.location.href = "https://cleancube.netlify.app/";
+};
+
+export const taskScheduler = () => {
+   shieldToggle();
+   window.location.href = "./todo.html";
+};
+
+// Define the functionalities for each button
+export const controlHome = () => {
+   shieldToggle();
+   window.location.href = "https://drive.google.com/file/d/1CvrwkzxC8CrBclqfXT7A0lLEP4JxqN3K/view?usp=drive_link";
+
 };
 // Add more functions as needed...
 
